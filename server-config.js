@@ -9,6 +9,7 @@ var handler = require('./lib/request-handler');
 
 var app = express();
 
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(partials());
@@ -36,5 +37,8 @@ app.get('/signup', handler.signupUserForm);
 app.post('/signup', handler.signupUser);
 
 app.get('/*', handler.navToLink);
+
+console.log("can you see me anywhere?")
+
 
 module.exports = app;
