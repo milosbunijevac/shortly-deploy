@@ -38,7 +38,7 @@ app.post('/signup', handler.signupUser);
 
 app.get('/*', handler.navToLink);
 
-console.log("can you see me anywhere?")
+console.log("can you see me anywhere?");
 
 
 module.exports = app;
