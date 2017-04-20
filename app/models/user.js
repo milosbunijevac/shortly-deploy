@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
   password: String
 });
 
-var User = mongoose.model({User: userSchema});
+var User = mongoose.model('User', userSchema);
 
 User.prototype.comparePassword = function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
