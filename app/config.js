@@ -51,4 +51,11 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
+var schemaUsers = mongoose.Schema;
+var users = new schemaUsers({
+  username: String,
+  password: String,
+  time: {type: Date, default: Date.now }
+});
+
 module.exports = db;
