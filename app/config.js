@@ -1,4 +1,6 @@
 var path = require('path');
+var mongoose = require('mongoose');
+
 var knex = require('knex')({
   client: 'sqlite3',
   connection: {
@@ -22,6 +24,18 @@ db.knex.schema.hasTable('urls').then(function(exists) {
       console.log('Created Table', table);
     });
   }
+});
+
+var schemaURLS = mongoose.Schema;
+var urls = new schemaURLS({
+  id: Number,
+  url: String,
+  baseUrl: String,
+  code: String,
+  title: String,
+  visits: Number,
+  time: {type: Date, default: Date.now }
+
 });
 
 db.knex.schema.hasTable('users').then(function(exists) {

@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var util = require('./lib/utility');
-var mongo = require('mongodb');
+var mongodb = require('mongodb');
 
 var handler = require('./lib/request-handler');
 
