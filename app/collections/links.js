@@ -1,9 +1,22 @@
 // NOTE: this file is not needed when using MongoDB
 var db = require('../config');
-var Link = require('../models/link');
+var crypto = require('crypto');
+var mongoose = require('mongoose');
 
-var Links = new db.Collection();
+var linkSchema = mongoose.Schema({
+  url: String,
+  base_url: String,
+  code: String,
+  title: String,
+  visits: Number
+});
 
-Links.model = Link;
+var Link = mongoose.model({'Link', linkSchmema});
 
-module.exports = Links;
+linkSchema.pre('save', function() {
+  var shasum = crypto.createHash('sha1');
+  shasum.update(this.url);
+  this.code = shasum.digest('hex').slice(0,5);
+});
+
+module.exports = Link;
