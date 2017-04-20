@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var util = require('./lib/utility');
+var mongo = require('mongodb');
 
 var handler = require('./lib/request-handler');
 
@@ -38,7 +39,7 @@ app.post('/signup', handler.signupUser);
 
 app.get('/*', handler.navToLink);
 
-console.log("can you see me anywhere?????");
+console.log('can you see me anywhere?????');
 
 
 module.exports = app;
