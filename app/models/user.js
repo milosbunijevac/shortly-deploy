@@ -1,5 +1,5 @@
 var db = require('../config');
-var bcrypt = require('crypto');
+var crypto = require('bcrypt');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 
@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('User', userSchema);
 
 User.prototype.comparePassword = function(attemptedPassword, callback) {
-  bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
+  crypto.compare(attemptedPassword, this.password, function(err, isMatch) {
     if (err) {
       callback(err);
     } else {
@@ -21,7 +21,7 @@ User.prototype.comparePassword = function(attemptedPassword, callback) {
 };
 
 userSchema.pre('save', function(next) {
-  var cipher = Promise.promisify(bcrypt.hash);
+  var cipher = Promise.promisify(crypto.hash);
   return cipher(this.password, null, null).bind(this)
     .then(function(hash) {
       this.password = hash;
